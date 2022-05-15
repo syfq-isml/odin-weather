@@ -11,17 +11,25 @@
     <div id="overall-wrapper">
         <header>
             <h1>THE WEATHER REPORT</h1>
-            <p>powered by openweather.org API</p>
+            <p>powered by openweathermap.org API</p>
         </header>
 
-        <div id="input-wrapper">
-            <input type="text" placeholder="Enter a location...">
-            <button type="button">Go!</button>
-        </div>
-
+        <section id="search-location">
+            <div>
+                <div id="input-wrapper">
+                    <input type="text" placeholder="Enter a location...">
+                    <button type="button">Go!</button>
+                </div>
+                <div id="error-msg">
+                    <p>Oops can't find that...</p>
+                </div>
+            </div>
+        </section>
+    
         <main>
             <div id="display-wrapper">
                 <div class="header">
+                    <p>You've searched for</p>
                     <h1>SINGAPORE</h1>
                 </div>
                 

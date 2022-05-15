@@ -1,8 +1,10 @@
-/* *,
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+*,
 *::before,
 *::after {
 	box-sizing: border-box;
-} */
+}
 
 * {
 	border: 1px solid white;
@@ -39,6 +41,7 @@ p {
 body {
 	background-color: black;
 	color: white;
+	font-family: "Rubik", sans-serif;
 }
 
 #overall-wrapper {
@@ -52,6 +55,17 @@ header {
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
+	gap: 5px;
+
+	margin: 10px 0;
+}
+
+#search-location {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 10px 0;
 }
 
 #input-wrapper {
@@ -59,6 +73,36 @@ header {
 	align-items: center;
 	justify-content: center;
 	gap: 5px;
+}
+
+#error-msg {
+	color: red;
+}
+
+#input-wrapper input {
+	width: max(25%, 250px);
+	padding: 3px 0 3px 35px;
+	border-radius: 5px;
+
+	background-image: url("../assets/svg/search.svg");
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: 5px 50%;
+
+	z-index: 2;
+}
+
+#input-wrapper button {
+	width: 80px;
+	padding: 3px 0 3px 20px;
+	margin-left: -20px;
+	border-radius: 5px;
+
+	cursor: pointer;
+}
+
+main {
+	margin: 10px 0;
 }
 
 #display-wrapper {
@@ -69,7 +113,11 @@ header {
 	gap: 10px;
 }
 
-#display-wrapper .header h1 {
+#display-wrapper .header {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .current-section {
@@ -79,6 +127,11 @@ header {
 
 .c-time {
 	grid-column: 1 / span 2;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
 
 .c-icon-and-desc,
