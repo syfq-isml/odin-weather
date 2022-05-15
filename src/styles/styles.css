@@ -1,26 +1,142 @@
+/* *,
+*::before,
+*::after {
+	box-sizing: border-box;
+} */
+
+* {
+	border: 1px solid white;
+}
+
+*,
+ul,
+h1,
+h2,
+h3,
+p {
+	margin: 0;
+	padding: 0;
+}
+
+.flex-row {
+	display: flex;
+}
+
+.flex-column {
+	display: flex;
+	flex-direction: column;
+}
+
+.flex-column-centered {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+/* ^^^ CENTRALISED STYLING ^^^ */
+
 body {
-    background-color: black;
+	background-color: black;
+	color: white;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
+#overall-wrapper {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 }
 
-#display-wrapper {
-    min-height: 70vh;
+header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 }
 
 #input-wrapper {
-    display: flex;
-    gap: 5px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 5px;
+}
+
+#display-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+}
+
+#display-wrapper .header h1 {
+}
+
+.current-section {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.c-time {
+	grid-column: 1 / span 2;
+}
+
+.c-icon-and-desc,
+.c-icon,
+.c-desc {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.c-misc ul {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+}
+
+.c-misc ul li {
+	display: grid;
+	place-items: center;
+}
+
+.hourly-section {
+	display: flex;
+	flex-direction: column;
+}
+
+.h-wrapper {
+	display: flex;
+	align-items: center;
+}
+
+.h-card,
+.h-time,
+.h-icon,
+.h-temp,
+.h-pop {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.daily-section {
+	display: flex;
+	flex-direction: column;
+}
+
+.d-wrapper {
+	display: grid;
+	grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+}
+
+.d-table-headers {
+	grid-column: 1 / -1;
 }
 
 main,
 #display-wrapper,
 #input-wrapper {
-    border: 1px solid black;
+	border: 1px solid black;
 }

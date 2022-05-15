@@ -10,17 +10,140 @@
 <body>
     <div id="overall-wrapper">
         <header>
-
+            <h1>THE WEATHER REPORT</h1>
+            <p>powered by openweather.org API</p>
         </header>
+
+        <div id="input-wrapper">
+            <input type="text" placeholder="Enter a location...">
+            <button type="button">Go!</button>
+        </div>
+
         <main>
             <div id="display-wrapper">
+                <div class="header">
+                    <h1>SINGAPORE</h1>
+                </div>
+                
+                <section class="current-section">
+                    <div id="c-time">
+                        <p>Weather report as at 9pm</p>
+                    </div>
+                    <div class="icon-and-desc">
+                        <div class="c-icon">
+                            <p>SUNNY DAY</p>
+                            <img src="#" alt="">
+                        </div>
+                        <div class="c-desc">
+                            <p>Raining all day</p>
+                        </div>
+                    </div>
+                    <div class="c-misc">
+                        <ul>
+                            <li class="tile">
+                                <p>sunrise</p>
+                            </li>
+                            <li class="tile">
+                                <p>sunset</p>
+                            </li>
+                            <li class="tile">
+                                <p>temp</p>
+                            </li>
+                            <li class="tile">
+                                <p>feels like</p>
+                            </li>
+                            <li class="tile">
+                                <p>pressure</p>
+                            </li>
+                            <li class="tile">
+                                <p>humidity</p>
+                            </li>
+                            <li class="tile">
+                                <p>wind speed</p>
+                            </li>
+                            <li class="tile">
+                                <p>UVI</p>
+                            </li>
+                        </ul>
+                    </div>
+                </section>
 
-            </div>
-            
-            <div id="input-wrapper">
-                <input type="text" placeholder="Enter a location...">
-                <button type="button">Go!</button>
-            </div>
+                <section class="hourly-section">
+                    <div class="h-card">
+                        <div class="h-time">
+                            <p>1am</p>
+                        </div>
+                        <div class="h-icon">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="h-temp">
+                            <p>20 deg</p>
+                        </div>
+                        <div class="h-pop">
+                            <p>60%</p>
+                        </div>
+                    </div>
+
+                    <div class="h-card">
+                        <div class="h-time">
+                            <p>2am</p>
+                        </div>
+                        <div class="h-icon">
+                            <img src="#" alt="">
+                        </div>
+                        <div class="h-temp">
+                            <p>20 deg</p>
+                        </div>
+                        <div class="h-pop">
+                            <p>60%</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="daily-section">
+                    <div class="d-table-headers">
+                        <div class="d-cell-header">
+                            <p>Day</p>
+                        </div>
+                        <div class="d-cell-header">
+                            <p>Icon</p>
+                        </div>
+                        <div class="d-cell-header">
+                            <p>Desc</p>
+                        </div>
+                        <div class="d-cell-header">
+                            <p>POP</p>
+                        </div>
+                        <div class="d-cell-header">
+                            <p>temp min</p>
+                        </div>
+                        <div class="d-cell-header">
+                            <p>temp max</p>
+                        </div>
+                    </div>
+                    <div class="d-table-cells">
+                        <div class="d-cell-info">
+                            <p>Monday</p>
+                        </div>
+                        <div class="d-cell-info">
+                            <p>SUNNY DAY</p>
+                            <img src="#" alt="">
+                        </div>
+                        <div class="d-cell-info">
+                            <p>Little bit cloudy</p>
+                        </div>
+                        <div class="d-cell-info">
+                            <p>60%</p>
+                        </div>
+                        <div class="d-cell-info">
+                            <p>28deg</p>
+                        </div>
+                        <div class="d-cell-info">
+                            <p>30deg</p>
+                        </div>
+                    </div>
+                </section>
+            </div>    
         </main>
     </div>
 </body>
