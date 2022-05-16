@@ -5,7 +5,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <script src="./main.js"></script>
 </head>
 <body>
     <div id="overall-wrapper">
@@ -17,23 +16,24 @@
         <section id="search-location">
             <div>
                 <div id="input-wrapper">
-                    <input type="text" placeholder="Enter a location...">
-                    <button type="button">Go!</button>
+                    <input id="search-bar" type="text" placeholder="Enter a location...">
+                    <button id="search-btn" type="button">Go!</button>
                 </div>
                 <div id="error-msg">
                     <p>Oops can't find that...</p>
                 </div>
             </div>
+            <button id="test">TEST</button>
         </section>
     
         <main>
             <div id="display-wrapper">
-                <div class="header">
+                <div class="header hidden" data-appear>
                     <p>You've searched for</p>
-                    <h1>SINGAPORE</h1>
+                    <h1 id="search-value"></h1>
                 </div>
                 
-                <section class="current-section">
+                <section class="current-section hidden" data-appear>
                     <div class="c-time">
                         <p>Current weather report as at 9pm</p>
                     </div>
@@ -76,7 +76,7 @@
                     </div>
                 </section>
 
-                <section class="hourly-section">
+                <section class="hourly-section hidden" data-appear>
                     <div class="section-heading">
                         <h1>HOURLY FORECAST (12 HOURS)</h1>
                     </div>
@@ -114,7 +114,7 @@
                     </div>
                 </section>
 
-                <section class="daily-section">
+                <section class="daily-section hidden" data-appear>
                     <div class="section-headings">
                         <h1>DAILY FORECAST (7 DAYS)</h1>
                     </div>

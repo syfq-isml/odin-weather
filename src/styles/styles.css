@@ -75,6 +75,10 @@ header {
 	gap: 5px;
 }
 
+input {
+	outline: 0;
+}
+
 #error-msg {
 	color: red;
 }
@@ -113,7 +117,7 @@ main {
 	gap: 10px;
 }
 
-#display-wrapper .header {
+.header {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -192,4 +196,12 @@ main,
 #display-wrapper,
 #input-wrapper {
 	border: 1px solid black;
+}
+
+.hidden {
+	display: none;
+}
+
+.active {
+	display: flex;
 }
