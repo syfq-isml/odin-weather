@@ -15,7 +15,6 @@ test.addEventListener("click", disappear);
 
 function disappear() {
 	const elems = document.querySelectorAll("[data-appear]");
-	console.log(elems);
 	elems.forEach((elem) => elem.classList.toggle("hidden"));
 }
 
@@ -43,8 +42,8 @@ function populateCurrentSection(obj) {
 
 	const options = { timeZone: obj.timezone };
 	// set time
-	const adjustedTime = format(new Date(obj.dt * 1000), "PPP, pp");
-	console.log(adjustedTime);
+	const adjustedTime = format(new Date(toSeconds(obj.dt)), "PPP, pp");
+
 	time.innerText = `Current weather report as at ${adjustedTime}`;
 
 	// set icon
@@ -54,8 +53,8 @@ function populateCurrentSection(obj) {
 
 	// make an array of infos
 	let infoArray = [
-		format(new Date(obj.sunrise * 1000), "p"),
-		format(new Date(obj.sunset * 1000), "p"),
+		format(new Date(toSeconds(obj.sunrise)), "p"),
+		format(new Date(toSeconds(obj.sunset)), "p"),
 		`${obj.temp}℃`,
 		`${obj.feels_like}℃`,
 		`${obj.pressure} hPA`,
@@ -69,12 +68,49 @@ function populateCurrentSection(obj) {
 	});
 }
 
+function populateDailySection(daily) {
+	let infoArray = [];
+	const icons = document.querySelectorAll(".d-cell-info img");
+	const cells = document.querySelectorAll(".d-cell-info p");
+
+	daily.forEach((day, i) => {
+		infoArray.push(
+			format(new Date(toSeconds(daily[i].dt)), "cccc"),
+			format(new Date(toSeconds(daily[i].dt)), "dd/MM"),
+			daily[i].weather[0].description,
+			`${toPercentage(daily[i].pop)}%`,
+			`${daily[i].temp.min}℃`,
+			`${daily[i].temp.max}℃`
+		);
+	});
+
+	cells.forEach((cell, index) => {
+		cells[index].innerText = `${infoArray[index]}`;
+	});
+
+	icons.forEach((icon, index) => {
+		icons[
+			index
+		].src = `http://openweathermap.org/img/wn/${daily[index].weather[0].icon}@2x.png`;
+	});
+}
+
 async function init() {
 	let { name, current, hourly, daily } = await getDataFromInput();
 	console.log(name);
 	console.log(current);
+	console.log(daily);
 	populateDisplayHeader(name);
 	populateCurrentSection(current);
+	populateDailySection(daily);
 
 	disappear();
+}
+
+function toPercentage(num) {
+	return +num * 100;
+}
+
+function toSeconds(num) {
+	return +num * 1000;
 }

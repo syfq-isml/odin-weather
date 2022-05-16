@@ -5,7 +5,6 @@ async function getLatLonData(name) {
 		`http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=1&appid=0ef8f50d14aee0ab81ad9bef14aa0d56`
 	);
 	let data = await response.json();
-	console.log(data);
 	return {
 		name: data[0].name,
 		country: data[0].country,

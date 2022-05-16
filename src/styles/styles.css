@@ -136,6 +136,7 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	padding: 10px;
 }
 
 .c-icon-and-desc,
@@ -155,6 +156,12 @@ main {
 .c-misc ul li {
 	display: grid;
 	place-items: center;
+
+	padding: 10px;
+}
+
+.section-headings {
+	margin: 20px 0;
 }
 
 .hourly-section {
@@ -186,16 +193,33 @@ main {
 .d-wrapper {
 	display: grid;
 	grid-template-columns: 1fr 2fr 1fr 1fr 1fr 1fr;
+
+	background-color: white;
+	row-gap: 1px;
 }
 
-.d-table-headers {
-	grid-column: 1 / -1;
+.d-cell-header {
+	background-color: black;
+	padding: 10px;
+
+	display: grid;
+	place-items: center;
 }
 
-main,
-#display-wrapper,
-#input-wrapper {
-	border: 1px solid black;
+.d-cell-info {
+	background-color: black;
+	padding: 10px;
+
+	display: grid;
+	place-items: center;
+}
+
+.d-date p:first-child {
+	align-self: end;
+}
+
+.d-date p:last-child {
+	align-self: start;
 }
 
 /* --- CSS MAGIC --- */
