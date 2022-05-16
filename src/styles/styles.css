@@ -224,7 +224,8 @@ main {
 
 /* --- CSS MAGIC --- */
 
-.hidden {
+.hidden,
+.error-hidden {
 	display: none;
 }
 

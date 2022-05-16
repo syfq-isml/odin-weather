@@ -7,11 +7,9 @@ import { getLatLonData, getWeatherData_OVERALL } from "./APIfuncs";
 
 const searchBar = document.querySelector("#search-bar");
 const searchBtn = document.querySelector("#search-btn");
+const errorMsg = document.querySelector("#error-msg");
 
 searchBtn.addEventListener("click", init);
-
-const test = document.querySelector("#test");
-test.addEventListener("click", disappear);
 
 function disappear() {
 	const elems = document.querySelectorAll("[data-appear]");
@@ -55,8 +53,8 @@ function populateCurrentSection(obj) {
 	let infoArray = [
 		format(new Date(toSeconds(obj.sunrise)), "p"),
 		format(new Date(toSeconds(obj.sunset)), "p"),
-		`${obj.temp}℃`,
-		`${obj.feels_like}℃`,
+		`${obj.temp.toFixed(1)}℃`,
+		`${obj.feels_like.toFixed(1)}℃`,
 		`${obj.pressure} hPA`,
 		`${obj.humidity}%`,
 		`${obj.wind_speed} m/s`,
@@ -79,8 +77,8 @@ function populateDailySection(daily) {
 			format(new Date(toSeconds(daily[i].dt)), "dd/MM"),
 			daily[i].weather[0].description,
 			`${toPercentage(daily[i].pop)}%`,
-			`${daily[i].temp.min}℃`,
-			`${daily[i].temp.max}℃`
+			`${daily[i].temp.min.toFixed(1)}℃`,
+			`${daily[i].temp.max.toFixed(1)}℃`
 		);
 	});
 
@@ -96,19 +94,26 @@ function populateDailySection(daily) {
 }
 
 async function init() {
-	let { name, current, hourly, daily } = await getDataFromInput();
-	console.log(name);
-	console.log(current);
-	console.log(daily);
-	populateDisplayHeader(name);
-	populateCurrentSection(current);
-	populateDailySection(daily);
+	try {
+		let { name, current, hourly, daily } = await getDataFromInput();
+		console.log(name);
+		console.log(current);
+		console.log(daily);
+		populateDisplayHeader(name);
+		populateCurrentSection(current);
+		populateDailySection(daily);
 
-	disappear();
+		disappear();
+	} catch (err) {
+		let errorText = await err;
+		errorMsg.innerText = errorText;
+		console.log("Error in init: " + errorText);
+	}
 }
 
 function toPercentage(num) {
-	return +num * 100;
+	let result = +num * 100;
+	return result.toFixed(0);
 }
 
 function toSeconds(num) {
