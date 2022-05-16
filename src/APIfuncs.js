@@ -13,7 +13,7 @@ async function getLatLonData(name) {
 			lon: data[0].lon,
 		};
 	} catch (err) {
-		throw "Oops, can't find that location. Try again.";
+		throw "Oops, can't find that location.";
 	}
 }
 
