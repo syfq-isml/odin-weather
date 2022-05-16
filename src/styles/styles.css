@@ -6,9 +6,9 @@
 	box-sizing: border-box;
 }
 
-* {
+/* * {
 	border: 1px solid white;
-}
+} */
 
 *,
 ul,
@@ -198,10 +198,16 @@ main,
 	border: 1px solid black;
 }
 
+/* --- CSS MAGIC --- */
+
 .hidden {
 	display: none;
 }
 
 .active {
 	display: flex;
+}
+
+.description {
+	text-transform: capitalize;
 }
