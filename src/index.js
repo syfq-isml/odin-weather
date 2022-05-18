@@ -3,11 +3,21 @@ import "./styles/styles.css";
 
 import format from "date-fns/format";
 
+import prevSvg from "./assets/svg/prev.svg";
+import nextSvg from "./assets/svg/next.svg";
+
 import { getLatLonData, getWeatherData_OVERALL } from "./APIfuncs";
 
 const searchBar = document.querySelector("#search-bar");
 const searchBtn = document.querySelector("#search-btn");
 const errorMsg = document.querySelector("#error-msg");
+const loadingMsg = document.querySelector("#loading");
+
+const prevBtn = document.querySelector("#prev-btn");
+const nextBtn = document.querySelector("#nxt-btn");
+
+prevBtn.src = prevSvg;
+nextBtn.src = nextSvg;
 
 searchBtn.addEventListener("click", init);
 
@@ -42,7 +52,7 @@ function populateCurrentSection(obj) {
 	// set time
 	const adjustedTime = format(new Date(toSeconds(obj.dt)), "PPP, pp");
 
-	time.innerText = `Current weather report as at ${adjustedTime}`;
+	time.innerText = `as at ${adjustedTime}`;
 
 	// set icon
 	icon.src = `http://openweathermap.org/img/wn/${obj.weather[0].icon}@2x.png`;
@@ -93,21 +103,35 @@ function populateDailySection(daily) {
 	});
 }
 
+function populateHourlySection(hourly) {
+	// make the slider
+	// create 12 cards
+	// fill in the 12 cards
+}
+
+let FIRST_VISIT = true;
+
 async function init() {
 	try {
+		errorMsg.innerText = "";
+		loadingMsg.innerText = "Fetching data....";
 		let { name, current, hourly, daily } = await getDataFromInput();
-		console.log(name);
-		console.log(current);
-		console.log(daily);
 		populateDisplayHeader(name);
 		populateCurrentSection(current);
 		populateDailySection(daily);
+		console.log(hourly);
+		populateHourlySection(hourly);
 
-		disappear();
+		loadingMsg.innerText = "";
+		if (FIRST_VISIT) {
+			FIRST_VISIT = false;
+			disappear();
+		}
 	} catch (err) {
 		let errorText = await err;
 		errorMsg.innerText = errorText;
 		console.log("Error in init: " + errorText);
+		loadingMsg.innerText = "";
 	}
 }
 

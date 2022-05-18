@@ -6,9 +6,9 @@
 	box-sizing: border-box;
 }
 
-/* * {
+* {
 	border: 1px solid white;
-} */
+}
 
 *,
 ul,
@@ -177,11 +177,28 @@ main {
 .hourly-section {
 	display: flex;
 	flex-direction: column;
+	width: 80vw;
+}
+
+#h-nav-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	gap: 50px;
+}
+
+#prev-btn,
+#nxt-btn {
+	height: 30px;
+	aspect-ratio: 1/1;
+	cursor: pointer;
 }
 
 .h-wrapper {
 	display: flex;
 	align-items: center;
+
+	gap: 40px;
 }
 
 .h-card,
@@ -198,6 +215,8 @@ main {
 .daily-section {
 	display: flex;
 	flex-direction: column;
+
+	width: 80vw;
 }
 
 .d-wrapper {
