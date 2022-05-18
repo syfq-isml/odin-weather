@@ -177,8 +177,16 @@ main {
 	padding: 10px;
 }
 
+.tile :first-child {
+	font-weight: 700;
+}
+
 .section-headings {
 	margin: 20px 0;
+}
+
+.section-headings p {
+	font-size: 0.7rem;
 }
 
 .hourly-section {
@@ -210,6 +218,7 @@ main {
 	gap: 40px;
 
 	overflow-x: hidden;
+	scroll-behavior: smooth;
 }
 
 .h-card,
@@ -221,6 +230,10 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.h-time {
+	font-weight: 500;
 }
 
 .h-temp {
@@ -253,6 +266,24 @@ main {
 
 .h-pop p {
 	order: 2;
+}
+
+.h-misc-info {
+	font-size: 0.7rem;
+}
+
+.h-misc-info :first-child {
+	font-weight: 700;
+}
+
+#temp-icon {
+	width: 15px;
+	aspect-ratio: 1/1;
+}
+
+#rainy-icon {
+	width: 10px;
+	aspect-ratio: 1/1;
 }
 
 .daily-section {
@@ -292,6 +323,10 @@ main {
 
 .d-date p:last-child {
 	align-self: start;
+}
+
+.d-cell-header p {
+	font-weight: 700;
 }
 
 /* --- CSS MAGIC --- */

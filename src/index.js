@@ -21,7 +21,16 @@ const nextBtn = document.querySelector("#nxt-btn");
 prevBtn.src = prevSvg;
 nextBtn.src = nextSvg;
 
+const rainyIcon = document.querySelector("#rainy-icon");
+const tempIcon = document.querySelector("#temp-icon");
+
+rainyIcon.src = rainSvg;
+tempIcon.src = tempSvg;
+
 searchBtn.addEventListener("click", init);
+
+prevBtn.addEventListener("click", prevBtnInit);
+nextBtn.addEventListener("click", nextBtnInit);
 
 function disappear() {
 	const elems = document.querySelectorAll("[data-appear]");
@@ -54,7 +63,7 @@ function populateCurrentSection(obj) {
 	// set time
 	const adjustedTime = format(new Date(toSeconds(obj.dt)), "PPP, pp");
 
-	time.innerText = `as at ${adjustedTime}`;
+	time.innerText = `as at ${adjustedTime} (your local time)`;
 
 	// set icon
 	icon.src = `http://openweathermap.org/img/wn/${obj.weather[0].icon}@2x.png`;
@@ -116,23 +125,28 @@ function populateHourlySection(arr) {
 	const popDiv = document.querySelectorAll(".h-pop");
 	const tempDiv = document.querySelectorAll(".h-temp");
 
-	tempDiv.forEach((div) => {
-		const img = document.createElement("img");
-		img.src = tempSvg;
-		div.append(img);
-	});
+	if (FIRST_VISIT) {
+		tempDiv.forEach((div) => {
+			const img = document.createElement("img");
+			img.src = tempSvg;
+			div.append(img);
+		});
 
-	popDiv.forEach((div) => {
-		const img = document.createElement("img");
-		img.src = rainSvg;
-		div.append(img);
-	});
+		popDiv.forEach((div) => {
+			const img = document.createElement("img");
+			img.src = rainSvg;
+			div.append(img);
+		});
+	}
 
 	let hourly = arr.filter((item, index) => index < 24);
 	console.log(hourly);
 
 	time.forEach((item, index) => {
-		item.innerText = format(new Date(toSeconds(hourly[index].dt)), "h aa");
+		item.innerText = `${format(
+			new Date(toSeconds(hourly[index].dt)),
+			"dd/MM"
+		)}\n ${format(new Date(toSeconds(hourly[index].dt)), "h aa")}`;
 	});
 
 	icon.forEach((item, index) => {
@@ -186,4 +200,26 @@ function toPercentage(num) {
 
 function toSeconds(num) {
 	return +num * 1000;
+}
+
+function prevBtnInit() {
+	const wrapper = document.querySelector(".h-wrapper");
+	const card = document.querySelector(".h-card");
+
+	let dimensions = wrapper.getBoundingClientRect();
+	let offset = card.getBoundingClientRect();
+	let hWidth = dimensions.width - 1.5 * offset.width;
+
+	wrapper.scrollLeft -= hWidth;
+}
+
+function nextBtnInit() {
+	const wrapper = document.querySelector(".h-wrapper");
+	const card = document.querySelector(".h-card");
+
+	let dimensions = wrapper.getBoundingClientRect();
+	let offset = card.getBoundingClientRect();
+	let hWidth = dimensions.width - 1.5 * offset.width;
+
+	wrapper.scrollLeft += hWidth;
 }

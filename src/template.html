@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= htmlWebpackPlugin.options.title %></title>
+    <link rel="shortcut icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/313/sun-with-face_1f31e.png" type="image/x-icon">
 </head>
 <body>
     <div id="overall-wrapper">
@@ -59,7 +60,7 @@
                                 <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>Temp</p>
+                                <p>Temperature</p>
                                 <p class="info-here"></p>
                             </li>
                             <li class="tile">
@@ -478,12 +479,20 @@
                         <img id="prev-btn">
                         <img id="nxt-btn">
                     </div>
+                    <div class="h-misc-info">
+                        <p>Legends:</p>
+                        <p><img id="temp-icon"> - Average Temperature</p>
+                        <p><img id="rainy-icon"> - Probability of Precipitation</p>
+                        <p>All timings displayed are in your local time.</p>
+                    </div>
                 </section>
 
                 <section class="daily-section hidden" data-appear>
                     <div class="section-headings">
                         <h1>DAILY FORECAST (7 DAYS)</h1>
+                        <p>All dates are in your local time.</p>
                     </div>
+                    
                     <div class="d-wrapper">
                        
                             <div class="d-cell-header">
@@ -663,6 +672,7 @@
                             </div>
                         
                     </div>
+                    
                 </section>
             </div>    
         </main>
