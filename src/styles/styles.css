@@ -6,9 +6,9 @@
 	box-sizing: border-box;
 }
 
-* {
+/* * {
 	border: 1px solid white;
-}
+} */
 
 *,
 ul,
@@ -48,6 +48,8 @@ body {
 	display: flex;
 	flex-direction: column;
 	min-height: 100vh;
+
+	gap: 20px;
 }
 
 header {
@@ -57,7 +59,7 @@ header {
 	justify-content: center;
 	gap: 5px;
 
-	margin: 10px 0;
+	margin: 20px 0;
 }
 
 #search-location {
@@ -156,6 +158,11 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+	gap: 10px;
+}
+
+.c-icon img {
+	transform: scale(2);
 }
 
 .c-misc ul {
@@ -185,6 +192,8 @@ main {
 	justify-content: center;
 	align-items: center;
 	gap: 50px;
+
+	margin: 20px 0;
 }
 
 #prev-btn,
@@ -199,6 +208,8 @@ main {
 	align-items: center;
 
 	gap: 40px;
+
+	overflow-x: hidden;
 }
 
 .h-card,
@@ -210,6 +221,38 @@ main {
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
+}
+
+.h-temp {
+	flex-direction: row;
+	gap: 1px;
+}
+
+.h-temp img {
+	order: 1;
+
+	width: 25px;
+	aspect-ratio: 1/1;
+}
+
+.h-temp p {
+	order: 2;
+}
+
+.h-pop {
+	flex-direction: row;
+	gap: 5px;
+}
+
+.h-pop img {
+	order: 1;
+
+	width: 18px;
+	aspect-ratio: 1/1;
+}
+
+.h-pop p {
+	order: 2;
 }
 
 .daily-section {

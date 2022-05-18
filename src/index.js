@@ -5,6 +5,8 @@ import format from "date-fns/format";
 
 import prevSvg from "./assets/svg/prev.svg";
 import nextSvg from "./assets/svg/next.svg";
+import rainSvg from "./assets/svg/rain.svg";
+import tempSvg from "./assets/svg/temp.svg";
 
 import { getLatLonData, getWeatherData_OVERALL } from "./APIfuncs";
 
@@ -103,10 +105,51 @@ function populateDailySection(daily) {
 	});
 }
 
-function populateHourlySection(hourly) {
-	// make the slider
-	// create 12 cards
-	// fill in the 12 cards
+function populateHourlySection(arr) {
+	const card = document.querySelectorAll(".h-card");
+	const time = document.querySelectorAll(".h-time p");
+	const icon = document.querySelectorAll(".h-icon img");
+	const desc = document.querySelectorAll(".h-icon p");
+	const temp = document.querySelectorAll(".h-temp p");
+	const pop = document.querySelectorAll(".h-pop p");
+
+	const popDiv = document.querySelectorAll(".h-pop");
+	const tempDiv = document.querySelectorAll(".h-temp");
+
+	tempDiv.forEach((div) => {
+		const img = document.createElement("img");
+		img.src = tempSvg;
+		div.append(img);
+	});
+
+	popDiv.forEach((div) => {
+		const img = document.createElement("img");
+		img.src = rainSvg;
+		div.append(img);
+	});
+
+	let hourly = arr.filter((item, index) => index < 24);
+	console.log(hourly);
+
+	time.forEach((item, index) => {
+		item.innerText = format(new Date(toSeconds(hourly[index].dt)), "h aa");
+	});
+
+	icon.forEach((item, index) => {
+		item.src = `http://openweathermap.org/img/wn/${hourly[index].weather[0].icon}@2x.png`;
+	});
+
+	desc.forEach((item, index) => {
+		item.innerText = `${hourly[index].weather[0].main}`;
+	});
+
+	temp.forEach((item, index) => {
+		item.innerText = `${hourly[index].temp.toFixed(1)}℃`;
+	});
+
+	pop.forEach((item, index) => {
+		item.innerText = `${toPercentage(hourly[index].pop)}%`;
+	});
 }
 
 let FIRST_VISIT = true;
@@ -115,14 +158,15 @@ async function init() {
 	try {
 		errorMsg.innerText = "";
 		loadingMsg.innerText = "Fetching data....";
+
 		let { name, current, hourly, daily } = await getDataFromInput();
 		populateDisplayHeader(name);
 		populateCurrentSection(current);
 		populateDailySection(daily);
-		console.log(hourly);
 		populateHourlySection(hourly);
 
 		loadingMsg.innerText = "";
+
 		if (FIRST_VISIT) {
 			FIRST_VISIT = false;
 			disappear();
