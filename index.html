@@ -5,143 +5,674 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
-    <script src="./main.js"></script>
+    <link rel="shortcut icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/240/google/313/sun-with-face_1f31e.png" type="image/x-icon">
 <script defer src="main.js"></script></head>
 <body>
     <div id="overall-wrapper">
         <header>
             <h1>THE WEATHER REPORT</h1>
-            <p>powered by openweather.org API</p>
+            <p>powered by openweathermap.org API</p>
         </header>
 
-        <div id="input-wrapper">
-            <input type="text" placeholder="Enter a location...">
-            <button type="button">Go!</button>
-        </div>
-
+        <section id="search-location">
+            <div>
+                <div id="input-wrapper">
+                    <input id="search-bar" type="text" placeholder="Enter a location...">
+                    <button id="search-btn" type="button">Go!</button>
+                </div>
+                <div id="error-msg">
+                    
+                </div>
+            </div>
+        </section>
+    
         <main>
             <div id="display-wrapper">
                 <div class="header">
-                    <h1>SINGAPORE</h1>
+                    <h1 id="loading"></h1>
+                </div>
+                <div class="header hidden" data-appear>
+                    <p>You've searched for</p>
+                    <h1 id="search-value"></h1>
                 </div>
                 
-                <section class="current-section">
-                    <div id="c-time">
-                        <p>Weather report as at 9pm</p>
+                <section class="current-section hidden" data-appear>
+                    <div class="c-time">
+                        <h1>CURRENT WEATHER FORECAST</h1>
+                        <p></p>
                     </div>
-                    <div class="icon-and-desc">
+                    <div class="c-icon-and-desc">
                         <div class="c-icon">
-                            <p>SUNNY DAY</p>
                             <img src="#" alt="">
                         </div>
                         <div class="c-desc">
-                            <p>Raining all day</p>
+                            <p class="description"></p>
                         </div>
                     </div>
                     <div class="c-misc">
                         <ul>
                             <li class="tile">
-                                <p>sunrise</p>
+                                <p>Sunrise</p>
+                                <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>sunset</p>
+                                <p>Sunset</p>
+                                <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>temp</p>
+                                <p>Temperature</p>
+                                <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>feels like</p>
+                                <p>Feels like</p>
+                                <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>pressure</p>
+                                <p>Pressure</p>
+                                <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>humidity</p>
+                                <p>Humidity</p>
+                                <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>wind speed</p>
+                                <p>Wind speed</p>
+                                <p class="info-here"></p>
                             </li>
                             <li class="tile">
-                                <p>UVI</p>
+                                <p>UV Index</p>
+                                <p class="info-here"></p>
                             </li>
                         </ul>
                     </div>
                 </section>
 
-                <section class="hourly-section">
-                    <div class="h-card">
-                        <div class="h-time">
-                            <p>1am</p>
+                <section class="hourly-section hidden" data-appear>
+                    <div class="section-headings">
+                        <h1>HOURLY FORECAST (24 HOURS)</h1>
+                    </div>
+                    <div class="h-wrapper">
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p></p>
+                            </div>
+                            <div class="h-icon">
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
                         </div>
-                        <div class="h-icon">
-                            <img src="#" alt="">
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
                         </div>
-                        <div class="h-temp">
-                            <p>20 deg</p>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
                         </div>
-                        <div class="h-pop">
-                            <p>60%</p>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p></p>
+                            </div>
+                            <div class="h-icon">
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+                                
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
+                        </div>
+                        <div class="h-card">
+                            <div class="h-time">
+                                <p> </p>
+                            </div>
+                            <div class="h-icon">
+
+                                <img src="#" alt="">
+                                <p></p>
+                            </div>
+                            <div class="h-temp">
+                                <p> </p>
+                            </div>
+                            <div class="h-pop">
+                                <p> </p>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="h-card">
-                        <div class="h-time">
-                            <p>2am</p>
-                        </div>
-                        <div class="h-icon">
-                            <img src="#" alt="">
-                        </div>
-                        <div class="h-temp">
-                            <p>20 deg</p>
-                        </div>
-                        <div class="h-pop">
-                            <p>60%</p>
-                        </div>
+                    <div id="h-nav-btn">
+                        <img id="prev-btn">
+                        <img id="nxt-btn">
+                    </div>
+                    <div class="h-misc-info">
+                        <p>Legends:</p>
+                        <p><img id="temp-icon"> - Average Temperature</p>
+                        <p><img id="rainy-icon"> - Probability of Precipitation</p>
+                        <p>All timings displayed are in your local time.</p>
                     </div>
                 </section>
 
-                <section class="daily-section">
-                    <div class="d-table-headers">
-                        <div class="d-cell-header">
-                            <p>Day</p>
-                        </div>
-                        <div class="d-cell-header">
-                            <p>Icon</p>
-                        </div>
-                        <div class="d-cell-header">
-                            <p>Desc</p>
-                        </div>
-                        <div class="d-cell-header">
-                            <p>POP</p>
-                        </div>
-                        <div class="d-cell-header">
-                            <p>temp min</p>
-                        </div>
-                        <div class="d-cell-header">
-                            <p>temp max</p>
-                        </div>
+                <section class="daily-section hidden" data-appear>
+                    <div class="section-headings">
+                        <h1>DAILY FORECAST (7 DAYS)</h1>
+                        <p>All dates are in your local time.</p>
                     </div>
-                    <div class="d-table-cells">
-                        <div class="d-cell-info">
-                            <p>Monday</p>
-                        </div>
-                        <div class="d-cell-info">
-                            <p>SUNNY DAY</p>
-                            <img src="#" alt="">
-                        </div>
-                        <div class="d-cell-info">
-                            <p>Little bit cloudy</p>
-                        </div>
-                        <div class="d-cell-info">
-                            <p>60%</p>
-                        </div>
-                        <div class="d-cell-info">
-                            <p>28deg</p>
-                        </div>
-                        <div class="d-cell-info">
-                            <p>30deg</p>
-                        </div>
+                    
+                    <div class="d-wrapper">
+                       
+                            <div class="d-cell-header">
+                                <p>Day/Date</p>
+                            </div>
+                            <div class="d-cell-header">
+                                <p>Weather</p>
+                            </div>
+                            <div class="d-cell-header">
+                                <p>Description</p>
+                            </div>
+                            <div class="d-cell-header">
+                                <p>Probability of</p>
+                                <p>Precipitation</p>
+                            </div>
+                            <div class="d-cell-header">
+                                <p>Temperature,</p>
+                                <p>minimum</p>
+                            </div>
+                            <div class="d-cell-header">
+                                <p>Temperature,</p>
+                                <p>maximum</p>
+                            </div>
+                        
+                            
+
+                            <div class="d-cell-info d-date">
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <img src="#" alt="">
+                            </div>
+                            <div class="d-cell-info">
+                                <p class="description"></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+
+                            
+
+                            <div class="d-cell-info d-date">
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <img src="#" alt="">
+                            </div>
+                            <div class="d-cell-info">
+                                <p class="description"></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+
+                            
+
+                            <div class="d-cell-info d-date">
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <img src="#" alt="">
+                            </div>
+                            <div class="d-cell-info">
+                                <p class="description"></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+
+                            
+
+                            <div class="d-cell-info d-date">
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <img src="#" alt="">
+                            </div>
+                            <div class="d-cell-info">
+                                <p class="description"></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+
+                            
+
+                            <div class="d-cell-info d-date">
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <img src="#" alt="">
+                            </div>
+                            <div class="d-cell-info">
+                                <p class="description"></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+
+                            
+
+                            <div class="d-cell-info d-date">
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <img src="#" alt="">
+                            </div>
+                            <div class="d-cell-info">
+                                <p class="description"></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+
+                            
+
+                            <div class="d-cell-info d-date">
+                                <p></p>
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <img src="#" alt="">
+                            </div>
+                            <div class="d-cell-info">
+                                <p class="description"></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                            <div class="d-cell-info">
+                                <p></p>
+                            </div>
+                        
                     </div>
+                    
                 </section>
             </div>    
         </main>
