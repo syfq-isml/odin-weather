@@ -3,7 +3,8 @@
 async function getLatLonData(name) {
 	try {
 		let response = await fetch(
-			`http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=1&appid=0ef8f50d14aee0ab81ad9bef14aa0d56`
+			`http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=1&appid=0ef8f50d14aee0ab81ad9bef14aa0d56`,
+			{ mode: "cors" }
 		);
 		let data = await response.json();
 		return {
@@ -21,7 +22,8 @@ async function getLatLonData(name) {
 async function getWeatherData_OVERALL(obj) {
 	try {
 		let response = await fetch(
-			`https://api.openweathermap.org/data/2.5/onecall?lat=${obj.lat}&lon=${obj.lon}&appid=0ef8f50d14aee0ab81ad9bef14aa0d56&units=metric`
+			`https://api.openweathermap.org/data/2.5/onecall?lat=${obj.lat}&lon=${obj.lon}&appid=0ef8f50d14aee0ab81ad9bef14aa0d56&units=metric`,
+			{ mode: "cors" }
 		);
 		let data = await response.json();
 		return { current: data.current, hourly: data.hourly, daily: data.daily };
