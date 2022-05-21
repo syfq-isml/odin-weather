@@ -3,7 +3,7 @@
 async function getLatLonData(name) {
 	try {
 		let response = await fetch(
-			`http://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=1&appid=0ef8f50d14aee0ab81ad9bef14aa0d56`,
+			`https://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=1&appid=0ef8f50d14aee0ab81ad9bef14aa0d56`,
 			{ mode: "cors" }
 		);
 		let data = await response.json();
