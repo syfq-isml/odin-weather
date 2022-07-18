@@ -27,7 +27,8 @@ const tempIcon = document.querySelector("#temp-icon");
 rainyIcon.src = rainSvg;
 tempIcon.src = tempSvg;
 
-searchBtn.addEventListener("click", init);
+// searchBtn.addEventListener("click", init);
+searchBtn.addEventListener("click", preInit);
 
 prevBtn.addEventListener("click", prevBtnInit);
 nextBtn.addEventListener("click", nextBtnInit);
@@ -43,6 +44,42 @@ async function getDataFromInput() {
 	let name = `${latLon.name}, ${latLon.country}`;
 	let dataObj = await getWeatherData_OVERALL(latLon);
 	return { name, ...dataObj };
+}
+
+async function getDataFromInput_withDUM() {
+	let data = await getLatLonData(searchBar.value);
+	return data;
+}
+
+function hideDUM() {
+	const dum = document.querySelector("#dum");
+	dum.classList.add("hidden");
+}
+
+function showDUM() {
+	const dum = document.querySelector("#dum");
+	dum.classList.remove("hidden");
+}
+
+function spawnDUM(data) {
+	const innerDum = document.querySelector("#inner-dum");
+
+	data.forEach((item) => {
+		const div = document.createElement("li");
+
+		const { name, country, lat, lon, state } = item;
+		const h1 = document.createElement("p");
+		h1.innerText = `${name}, ${state}, ${country}`;
+		// const latP = document.createElement('p');
+		// latP.innerText = `${lat}`;
+		// const lonP = document.createElement('p');
+		// lonP.innerText = `${lon}`;
+
+		div.append(h1);
+		innerDum.append(div);
+	});
+
+	showDUM();
 }
 
 const displayWrapper = document.querySelector("#display-wrapper");
@@ -167,6 +204,23 @@ function populateHourlySection(arr) {
 }
 
 let FIRST_VISIT = true;
+hideDUM();
+
+async function preInit() {
+	try {
+		errorMsg.innerText = "";
+		loadingMsg.innerText = "Fetching data....";
+
+		let data = await getDataFromInput_withDUM();
+		console.log(data);
+		spawnDUM(data);
+	} catch (err) {
+		let errorText = err.message;
+		errorMsg.innerText = errorText;
+		console.log("Error in init: " + errorText);
+		loadingMsg.innerText = "";
+	}
+}
 
 async function init() {
 	try {
