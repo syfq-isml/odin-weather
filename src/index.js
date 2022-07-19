@@ -76,6 +76,7 @@ function spawnDUM(data) {
 
 	data.forEach((item) => {
 		const div = document.createElement("li");
+		div.classList.add("dum-list");
 
 		let { name, country, lat, lon, state } = item;
 		if (state == null) state = country;
@@ -219,7 +220,8 @@ function populateHourlySection(arr) {
 let FIRST_VISIT = true;
 hideDUM();
 
-async function preInit() {
+async function preInit(e) {
+	e.preventDefault();
 	try {
 		errorMsg.innerText = "";
 		loadingMsg.innerText = "Fetching data....";

@@ -123,6 +123,17 @@ input {
 	align-items: center;
 }
 
+.dum-list {
+	margin: 10px 0;
+	padding: 5px;
+	transition: all 0.1s ease-in-out;
+}
+
+.dum-list:hover {
+	cursor: pointer;
+	background-color: rgba(255, 255, 255, 0.271);
+}
+
 main {
 	margin: 10px 0;
 }
