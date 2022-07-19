@@ -51,6 +51,13 @@ async function getDataFromInput_withDUM() {
 	return data;
 }
 
+async function getDataFromInput_2(latLon) {
+	if (latLon.state == null) latLon.state = latLon.country;
+	let name = `${latLon.name}, ${latLon.state}, ${latLon.country}`;
+	let dataObj = await getWeatherData_OVERALL(latLon);
+	return { name, ...dataObj };
+}
+
 function hideDUM() {
 	const dum = document.querySelector("#dum");
 	dum.classList.add("hidden");
@@ -63,11 +70,15 @@ function showDUM() {
 
 function spawnDUM(data) {
 	const innerDum = document.querySelector("#inner-dum");
+	while (innerDum.firstChild) {
+		innerDum.removeChild(innerDum.firstChild);
+	}
 
 	data.forEach((item) => {
 		const div = document.createElement("li");
 
-		const { name, country, lat, lon, state } = item;
+		let { name, country, lat, lon, state } = item;
+		if (state == null) state = country;
 		const h1 = document.createElement("p");
 		h1.innerText = `${name}, ${state}, ${country}`;
 		// const latP = document.createElement('p');
@@ -77,6 +88,8 @@ function spawnDUM(data) {
 
 		div.append(h1);
 		innerDum.append(div);
+
+		div.addEventListener("click", () => init_2(item));
 	});
 
 	showDUM();
@@ -214,8 +227,37 @@ async function preInit() {
 		let data = await getDataFromInput_withDUM();
 		console.log(data);
 		spawnDUM(data);
+
+		loadingMsg.innerText = "";
 	} catch (err) {
 		let errorText = err.message;
+		errorMsg.innerText = errorText;
+		console.log("Error in init: " + errorText);
+		loadingMsg.innerText = "";
+	}
+}
+
+async function init_2(data) {
+	try {
+		hideDUM();
+		errorMsg.innerText = "";
+		loadingMsg.innerText = "Fetching data....";
+
+		let { name, current, hourly, daily } = await getDataFromInput_2(data);
+
+		populateDisplayHeader(name);
+		populateCurrentSection(current);
+		populateDailySection(daily);
+		populateHourlySection(hourly);
+
+		loadingMsg.innerText = "";
+
+		if (FIRST_VISIT) {
+			FIRST_VISIT = false;
+			disappear();
+		}
+	} catch (err) {
+		let errorText = await err;
 		errorMsg.innerText = errorText;
 		console.log("Error in init: " + errorText);
 		loadingMsg.innerText = "";
