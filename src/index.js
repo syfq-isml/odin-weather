@@ -225,6 +225,7 @@ async function preInit(e) {
 	try {
 		errorMsg.innerText = "";
 		loadingMsg.innerText = "Fetching data....";
+		hideDUM();
 
 		let data = await getDataFromInput_withDUM();
 		console.log(data);

@@ -2,15 +2,22 @@
 
 async function getLatLonData(name) {
 	try {
+		if (name === "" || name == null)
+			throw new Error("Type something!", { cause: "NONAME" });
+
 		let response = await fetch(
 			`https://api.openweathermap.org/geo/1.0/direct?q=${name}&limit=10&appid=0ef8f50d14aee0ab81ad9bef14aa0d56`,
 			{ mode: "cors" }
 		);
+
 		let data = await response.json();
+
+		if (data.length === 0)
+			throw new Error("Couldn't find any results. Try again.");
+
 		return data;
 	} catch (err) {
-		if (name === "") throw "Type something!";
-		throw "Oops, can't find that location.";
+		throw err;
 	}
 }
 
