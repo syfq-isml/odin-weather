@@ -28,7 +28,7 @@ rainyIcon.src = rainSvg;
 tempIcon.src = tempSvg;
 
 // searchBtn.addEventListener("click", init);
-searchBtn.addEventListener("click", preInit);
+document.querySelector("#input-wrapper").addEventListener("submit", preInit);
 
 prevBtn.addEventListener("click", prevBtnInit);
 nextBtn.addEventListener("click", nextBtnInit);
@@ -222,6 +222,25 @@ hideDUM();
 
 async function preInit(e) {
 	e.preventDefault();
+	try {
+		errorMsg.innerText = "";
+		loadingMsg.innerText = "Fetching data....";
+		hideDUM();
+
+		let data = await getDataFromInput_withDUM();
+		console.log(data);
+		spawnDUM(data);
+
+		loadingMsg.innerText = "";
+	} catch (err) {
+		let errorText = err.message;
+		errorMsg.innerText = errorText;
+		console.log("Error in init: " + errorText);
+		loadingMsg.innerText = "";
+	}
+}
+
+async function preInit_async(e) {
 	try {
 		errorMsg.innerText = "";
 		loadingMsg.innerText = "Fetching data....";
